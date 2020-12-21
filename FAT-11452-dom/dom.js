@@ -1,32 +1,46 @@
 import './main.css';
 
+const innerHTMLTemplates = {
+  card: ({
+    name, type, classis, squad,
+  }) => `<h2 class="card__name">
+      ${name}
+    </h2>
+    <div class="card__body">
+      <div class="card__heading">
+        <h3>Тип:</h3>
+        <div class="card__text">
+          ${type}
+        </div>
+      </div>
+      <div class="card__heading">
+        <h3>Класс:</h3>
+        <div class="card__text">
+          ${classis}
+        </div>
+      </div>
+      <div class="card__heading">
+        <h3>Отряд:</h3>
+        <div class="card__text">
+          ${squad}
+        </div>
+      </div>
+    </div>`,
+  modal: ({ name, description }) => `
+    <div class="modal__mask"></div>
+    <div class="modal__body">
+      <div class="modal__header">
+        <h2 class="modal__name">${name}</h2>
+        <div class="modal__close">&times;</div>
+      </div>
+      <div class="modal__description">${description}</div>
+    </div>`,
+};
 function card({ props = {}, i }) {
   const el = document.createElement('div');
   el.classList.add('card');
   el.setAttribute('data-open', String(i));
-  el.innerHTML = `<h2 class="card__name">
-        ${props.name}
-      </h2>
-      <div class="card__body">
-        <div class="card__heading">
-          <h3>Тип:</h3>
-          <div class="card__text">
-            ${props.type}
-          </div>
-        </div>
-        <div class="card__heading">
-          <h3>Класс:</h3>
-          <div class="card__text">
-            ${props.class}
-          </div>
-        </div>
-        <div class="card__heading">
-          <h3>Отряд:</h3>
-          <div class="card__text">
-            ${props.squad}
-          </div>
-        </div>
-      </div>`;
+  el.innerHTML = innerHTMLTemplates.card(props);
   return el;
 }
 
@@ -35,15 +49,7 @@ function modal({ props = {}, i }) {
   el.style.display = 'none';
   el.classList.add('modal');
   el.setAttribute('data-open', String(i));
-  el.innerHTML = `
-    <div class="modal__mask"></div>
-    <div class="modal__body">
-      <div class="modal__header">
-        <h2 class="modal__name">${props.name}</h2>
-        <div class="modal__close">&times;</div>
-      </div>
-      <div class="modal__description">${props.description}</div>
-    </div>`;
+  el.innerHTML = innerHTMLTemplates.modal(props);
   return el;
 }
 const body = document.querySelector('body');
@@ -62,13 +68,13 @@ const animals = [
   {
     name: 'лев',
     type: 'хордовые',
-    class: 'млекопитающие',
+    classis: 'млекопитающие',
     squad: 'хищные',
   },
   {
     name: 'Китовая акула',
     type: 'хордовые',
-    class: 'хрящевые рыбы',
+    classis: 'хрящевые рыбы',
     squad: 'воббегонгообразные',
   },
 ].forEach((props, i) => {

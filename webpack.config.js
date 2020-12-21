@@ -8,7 +8,7 @@ const fs = require('fs');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './FAT-11452-dom/dom.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -55,7 +55,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HWP(
       {
-        template: 'src/index.html',
+        template: 'FAT-11452-dom/index.html',
       },
     ),
     new MiniCssExtractPlugin({
