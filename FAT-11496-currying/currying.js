@@ -19,7 +19,6 @@ function cur(arg) {
     return terms.reduce((acc, el) => acc + el);
   };
 }
-console.log(cur(1)(2)(3)(4)(5)());
 
 if (!Function.prototype.bind) {
   Function.prototype.bind = function (oThis) {
@@ -55,6 +54,3 @@ function mediana(...args) {
   }
   return arr[Math.floor(arr.length / 2)];
 }
-
-console.log(mediana([1, 2, 3, 7, 8, 4, 2]));
-console.log(mediana(1, 2, 3, 7, 5, 8, 4, 2));

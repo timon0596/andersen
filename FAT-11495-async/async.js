@@ -16,42 +16,6 @@ function promiseRace(promisesArray) {
   });
 }
 
-const promises = [
-  new Promise((res, rej) => {
-    setTimeout(rej, 3300, 1);
-  }),
-  new Promise((res, rej) => {
-    setTimeout(rej, 3000, 2);
-  }),
-  new Promise((res, rej) => {
-    setTimeout(rej, 3330, 3);
-  }),
-];
-
-const promises1 = [
-  new Promise((res, rej) => {
-    setTimeout(res, 3300, 1);
-  }),
-  new Promise((res, rej) => {
-    setTimeout(res, 3000, 2);
-  }),
-  new Promise((res, rej) => {
-    setTimeout(res, 3330, 3);
-  }),
-];
-
-promiseRace(promises).then((data) => {
-  console.log(data);
-}).catch((er) => {
-  console.error(er);
-});
-
-promiseRace(promises1).then((data) => {
-  console.log(data);
-}).catch((er) => {
-  console.error(er);
-});
-
 function fetchPolyfill(url, method = 'GET') {
   return new Promise((res, rej) => {
     const xhr = new XMLHttpRequest();
@@ -67,4 +31,20 @@ function fetchPolyfill(url, method = 'GET') {
 }
 
 function promiseAll(promisesArray) {
-  const output = new Arra
+  const output = new Array(promisesArray.length);
+  let counter = 0;
+
+  return new Promise((resolve, reject) => {
+    promisesArray.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((value) => {
+          output[index] = value;
+          counter += 1;
+          if (counter === promisesArray.length) {
+            resolve(output);
+          }
+        })
+        .catch(reject);
+    });
+  });
+}
