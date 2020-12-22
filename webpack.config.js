@@ -8,7 +8,7 @@ const fs = require('fs');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './FAT-11452-dom/dom.js',
+  entry: './react-todo/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -21,7 +21,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: '/node_modules/',
       },
@@ -55,7 +55,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HWP(
       {
-        template: 'FAT-11452-dom/index.html',
+        template: 'react-todo/index.html',
       },
     ),
     new MiniCssExtractPlugin({
