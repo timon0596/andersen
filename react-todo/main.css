@@ -3,4 +3,13 @@
   --primary-green: #b5e7a0;
   --secondary-green: #e3eaa7;
   --border-green: #86af49;
+  --warning: #eea29a;
+}
+.root{
+  display: grid;  
+  grid-gap: 40px; 
+}
+.todo-list{
+  display: grid;  
+  grid-gap: 20px; 
 }
