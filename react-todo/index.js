@@ -14,6 +14,7 @@ class App extends React.Component {
     this.removeItem=this.removeItem.bind(this)
     this.up=this.up.bind(this)
     this.down=this.down.bind(this)
+    this.done=this.done.bind(this)
   }
 
   addItem(item){
@@ -45,6 +46,11 @@ class App extends React.Component {
     localStorage.setItem('state',JSON.stringify(this.state.todos))
     this.updateState()
   }
+  done(index){
+    this.state.todos[index].done=true
+    localStorage.setItem('state',JSON.stringify(this.state.todos))
+    this.updateState()
+  }
   componentDidMount(){
     this.updateState()
   }
@@ -62,6 +68,8 @@ class App extends React.Component {
             removeItem={this.removeItem}
             up={this.up}
             down={this.down}
+            done={this.done}
+            isDone={el.done}
             />)
         }
       </div>

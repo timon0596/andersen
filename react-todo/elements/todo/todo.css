@@ -39,7 +39,6 @@
   opacity: 0.5;
 }
 .todo__is-done{
-  position: absolute;
   top: 20px;
   right: 20px;
 }
