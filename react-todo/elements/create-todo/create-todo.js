@@ -2,16 +2,13 @@ import React from 'react'
 export class CreateTodo extends React.Component {
   constructor(props){
     super(props);
-    this.updateTodoList = props.updateState
-    this.state = {name:'',description:''}
+    this.state = {name:'',description:'',key:Date.now(),done:false}
     this.create=this.create.bind(this)
     this.handleNameChange=this.handleNameChange.bind(this)
   }
   create(){
-    const dateKey=Date.now()
     if(!this.state.name.trim()){return}
-    localStorage.setItem(`task_${dateKey}`,JSON.stringify(this.state))
-    this.updateTodoList()
+      this.setState({key: Date.now()},this.props.addItem({...this.state}))
 
   }
 

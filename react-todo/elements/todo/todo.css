@@ -10,6 +10,11 @@
   padding: 20px 40px; 
   padding-bottom: 10px; 
 }
+.todo__order-buttons{
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
 .todo__buttons{
   display: flex;
   justify-content: space-between;

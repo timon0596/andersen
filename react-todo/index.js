@@ -10,12 +10,40 @@ class App extends React.Component {
   constructor(){
     super()
     this.updateState=this.updateState.bind(this)
+    this.addItem=this.addItem.bind(this)
+    this.removeItem=this.removeItem.bind(this)
+    this.up=this.up.bind(this)
+    this.down=this.down.bind(this)
   }
+
+  addItem(item){
+    this.state.todos.push(item)
+    localStorage.setItem('state',JSON.stringify(this.state.todos))
+    this.updateState()
+  }
+
+  removeItem(index){
+   this.state.todos.splice(index,1)
+   localStorage.setItem('state',JSON.stringify(this.state.todos))
+   this.updateState()
+  }
+
   updateState(){
-    const todos = Array.from({length: localStorage.length}).map((el,i) => {
-      const key = localStorage.key(i)
-      return /^task_/.test(key)?{...JSON.parse(localStorage.getItem(key)),key}:0}).filter((el) =>el)
+    const state = localStorage.getItem('state')
+    const todos = state?JSON.parse(state):[]
     this.setState({todos})
+  }
+  up(index){
+    if(index-1<0){return}
+    [this.state.todos[index],this.state.todos[index-1]]=[this.state.todos[index-1],this.state.todos[index]]
+    localStorage.setItem('state',JSON.stringify(this.state.todos))
+    this.updateState()
+  }
+  down(index){
+    if(!this.state.todos[index+1]){return}
+    [this.state.todos[index],this.state.todos[index+1]]=[this.state.todos[index+1],this.state.todos[index]]
+    localStorage.setItem('state',JSON.stringify(this.state.todos))
+    this.updateState()
   }
   componentDidMount(){
     this.updateState()
@@ -23,16 +51,17 @@ class App extends React.Component {
 
   render(){return (
     <>
-      <CreateTodo updateState={this.updateState}/>
+      <CreateTodo addItem={this.addItem}/>
       <div className="todo-list">
         {
           this.state.todos.map((el,i) =><Todo 
             name={el.name}
             description={el.description}
-            done={el.isDone}
-            id={el.key}
-            key={el.key}
-            updateState={this.updateState}
+            key={String(el.key)}
+            index={i}
+            removeItem={this.removeItem}
+            up={this.up}
+            down={this.down}
             />)
         }
       </div>
