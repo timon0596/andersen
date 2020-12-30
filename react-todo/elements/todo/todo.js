@@ -12,8 +12,8 @@ export class Todo extends Component {
         <div className="todo">
           {this.props.isDone && <div className="todo__is-done">&#10004;&#65039;</div>}
           <div className="todo__order-buttons">
-            <div className="" onClick={() =>{this.props.up(this.props.index)}}>up</div>
-            <div className="" onClick={() =>{this.props.down(this.props.index)}}>down</div>
+            <div className="todo__up-button" onClick={() =>{this.props.up(this.props.index)}}>up</div>
+            <div className="todo__down-button" onClick={() =>{this.props.down(this.props.index)}}>down</div>
           </div>
           <div className="todo__name">{this.props.name}</div>
           <div className="todo__description">{this.props.description}</div>
