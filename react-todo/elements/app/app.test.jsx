@@ -1,8 +1,9 @@
 import React from 'react';
 import { mount,shallow} from 'enzyme';
 import { App } from './app';
+
 describe('app',() =>{
-  const wrapper = mount(<App/>);
+  const wrapper = mount(<App />);
   const instance = wrapper.instance();
   instance.updateState = jest.fn(() =>{
     wrapper.setState({todos: [{key:1},{key:2},{key:3}]})
@@ -10,8 +11,8 @@ describe('app',() =>{
   const oldUp = instance.up
   const oldDown = instance.down
   const oldDone = instance.done
-  const addItem = instance.addItem
-  const removeItem = instance.removeItem
+  const {addItem} = instance
+  const {removeItem} = instance
   instance.up = jest.fn((index) =>{
     oldUp(index)
   })
