@@ -1,0 +1,44 @@
+.todo{
+  position: relative;
+  display: grid;
+  grid-gap: 20px;
+  background: var(--primary-green);
+  border-radius: 5px;  
+  border: 1px solid var(--border-green);
+  max-width: 300px;
+  box-sizing: border-box;
+  padding: 20px 40px; 
+  padding-bottom: 10px; 
+}
+.todo__order-buttons{
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.todo__buttons{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;  
+}
+.todo__button-delete,.todo__button-done{
+  padding: 5px 20px;
+  background: var(--secondary-green);
+  cursor: pointer;
+
+}
+.todo__button-delete{
+  border: 2px solid var(--warning);
+}
+.todo__button-done{
+  border: 2px solid var(--border-green);
+}
+
+.todo__button-done_disabled,
+.todo__button-delete:active,
+.todo__button-done:active{
+  opacity: 0.5;
+}
+.todo__is-done{
+  top: 20px;
+  right: 20px;
+}

@@ -8,7 +8,7 @@ const fs = require('fs');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './react-todo/index.js',
+  entry: './react-todo-redux/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -55,7 +55,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HWP(
       {
-        template: 'react-todo/index.html',
+        template: 'react-todo-redux/index.html',
       },
     ),
     new MiniCssExtractPlugin({

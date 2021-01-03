@@ -1,0 +1,21 @@
+.create-todo{
+  padding: 10px 40px;
+  display: grid;  
+  grid-gap: 20px; 
+  width: 300px;
+  border-radius: 5px;
+  background: var(--primary-green);
+  border: 1px solid var(--border-green);
+  box-sizing: border-box;
+}
+.create-todo__button{
+  justify-self: flex-end;
+  background: var(--secondary-green);
+  padding: 5px 20px;
+  border-radius: 10%;
+  border: 1px solid var(--border-green);
+  cursor: pointer;
+}
+.create-todo__button:active{
+  opacity: .7;
+}

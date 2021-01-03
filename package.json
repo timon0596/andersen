@@ -59,6 +59,9 @@
   "homepage": "https://github.com/timon0596/andersen#readme",
   "dependencies": {
     "@babel/preset-react": "^7.12.10",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "style-loader": "^2.0.0"
   }
 }
