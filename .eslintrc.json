@@ -5,8 +5,9 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb",
-        "prettier"
+        "prettier",
+        "plugin:prettier/recommended",
+        "airbnb"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -17,10 +18,29 @@
     },
     "plugins": [
         "react",
-        "prettier"
+        "prettier",
+        "disable"
     ],
+    "processor": "disable/disable",
+    "overrides": [
+        {
+          "files": ["react-todo-redux/**/*.jsx"],
+          "settings": {
+            "disable/plugins": ["jsx-a11y"]
+          }
+        }
+      ],
     "rules": {
-        "prettier/prettier": "error",
-        "class-methods-use-this": 0
+        "prettier/prettier": ["error", {
+           "endOfLine":"auto"
+         }],
+        "class-methods-use-this": 0,
+        "import/prefer-default-export": 0,
+        "react/prop-types": 0,
+        "no-console": 0,
+        "linebreak-style": 0,
+        "jsx-ally/click-events-have-key-events": 0,
+        "react/prefer-stateless-function": 0
+
     }
 }
