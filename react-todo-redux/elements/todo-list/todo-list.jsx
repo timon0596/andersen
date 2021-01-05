@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getTodosFromLocalStorage } from '../../actions/actions';
 import Todo from '../todo/todo';
 
 class TodoList extends Component {
+  componentDidMount() {
+    const { getTodos } = this.props;
+    getTodos();
+  }
+
   render() {
     const { todos } = this.props;
     return (
@@ -20,4 +26,11 @@ class TodoList extends Component {
     );
   }
 }
-export default connect((state) => ({ todos: state.todos }), null)(TodoList);
+export default connect(
+  (state) => ({ todos: state.todos }),
+  (dispatch) => ({
+    getTodos: () => {
+      dispatch(getTodosFromLocalStorage());
+    },
+  })
+)(TodoList);

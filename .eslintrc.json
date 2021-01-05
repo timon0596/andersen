@@ -19,7 +19,8 @@
     "plugins": [
         "react",
         "prettier",
-        "disable"
+        "disable",
+        "@babel"
     ],
     "processor": "disable/disable",
     "overrides": [
@@ -39,7 +40,6 @@
         "react/prop-types": 0,
         "no-console": 0,
         "linebreak-style": 0,
-        "jsx-ally/click-events-have-key-events": 0,
         "react/prefer-stateless-function": 0
 
     }

@@ -5,8 +5,6 @@ import { ADD } from '../../store/types';
 class CreateTodo extends React.Component {
   constructor(props) {
     super(props);
-    this.create = this.create.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
     this.state = { name: '', description: '' };
     this.inputRef = React.createRef();
   }
@@ -15,13 +13,13 @@ class CreateTodo extends React.Component {
     this.inputRef.current.focus();
   }
 
-  handleNameChange(event) {
+  handleNameChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-  }
+  };
 
-  create() {
+  create = () => {
     const { dispatch } = this.props;
     const { name } = this.state;
     if (!name.trim()) {
@@ -31,7 +29,7 @@ class CreateTodo extends React.Component {
       type: ADD,
       payload: { ...this.state, key: Date.now(), isDone: false },
     });
-  }
+  };
 
   render() {
     return (

@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { checkAsDoneWithTimeout } from '../../actions/asyncFunctions';
 import { CHECK_AS_DONE, MOVE_DOWN, MOVE_UP, REMOVE } from '../../store/types';
 
 class Todo extends Component {
   render() {
-    const { isDone, name, description, index, dispatch } = this.props;
+    const {
+      isDone,
+      name,
+      description,
+      index,
+      dispatchChecking,
+      dispatch,
+    } = this.props;
     const classes = `todo__button-done ${
       isDone ? 'todo__button-done_disabled' : ''
     }`;
@@ -35,7 +43,7 @@ class Todo extends Component {
           <div
             className={classes}
             onClick={() => {
-              dispatch({ type: CHECK_AS_DONE, index });
+              dispatchChecking({ type: CHECK_AS_DONE, index });
             }}
           >
             done
@@ -53,4 +61,9 @@ class Todo extends Component {
     );
   }
 }
-export default connect(null)(Todo);
+export default connect(null, (dispatch) => ({
+  dispatchChecking: (action) => {
+    dispatch(checkAsDoneWithTimeout(action));
+  },
+  dispatch,
+}))(Todo);

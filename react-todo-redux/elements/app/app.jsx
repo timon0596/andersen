@@ -5,10 +5,6 @@ import CreateTodo from '../create-todo/create-todo';
 import TodoList from '../todo-list/todo-list';
 
 export class App extends React.Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     return (
       <Provider store={store}>
