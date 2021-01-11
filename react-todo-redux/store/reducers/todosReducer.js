@@ -5,7 +5,7 @@ import {
   REMOVE,
   CHECK_AS_DONE,
   GET_TODOS,
-} from '../store/types';
+} from '../types';
 
 export default (state = [], action) => {
   const { type, payload, index, todosFromLocalStorage } = action;
@@ -51,6 +51,7 @@ export default (state = [], action) => {
     case CHECK_AS_DONE: {
       const todos = [...state];
       todos[index].isDone = true;
+      localStorage.setItem('todos', JSON.stringify(todos));
       return todos;
     }
 

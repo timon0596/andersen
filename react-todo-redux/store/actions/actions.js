@@ -1,4 +1,4 @@
-import { GET_TODOS } from '../store/types';
+import { GET_TODOS } from '../types';
 
 export const getTodosFromLocalStorage = () => (dispatch) => {
   let todos = localStorage.getItem('todos');

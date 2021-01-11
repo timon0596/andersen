@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ADD } from '../../store/types';
+import { CREATE_BUTTON, TASK_DESCRIPTION, TASK_NAME } from './create-todo.dict';
 
 class CreateTodo extends React.Component {
   constructor(props) {
@@ -34,21 +35,21 @@ class CreateTodo extends React.Component {
   render() {
     return (
       <div className="create-todo">
-        <div className="create-todo__name">task name</div>
+        <div className="create-todo__name">{TASK_NAME}</div>
         <input
           ref={this.inputRef}
           className="create-todo__name-input"
           name="name"
           onChange={this.handleNameChange}
         />
-        <div className="create-todo__description-label">task description</div>
+        <div className="create-todo__description-label">{TASK_DESCRIPTION}</div>
         <textarea
           className="create-todo__description"
           name="description"
           onChange={this.handleNameChange}
         />
         <div className="create-todo__button" onClick={this.create}>
-          create
+          {CREATE_BUTTON}
         </div>
       </div>
     );

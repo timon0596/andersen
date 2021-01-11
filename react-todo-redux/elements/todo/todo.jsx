@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { checkAsDoneWithTimeout } from '../../actions/asyncFunctions';
+import { checkAsDoneWithTimeout } from '../../store/actions/asyncFunctions';
 import { CHECK_AS_DONE, MOVE_DOWN, MOVE_UP, REMOVE } from '../../store/types';
+import { DONE_EMOJI, TODOS_BUTTONS_NAMES } from './todos.dict';
 
+const { up, down, done, deleteButton } = TODOS_BUTTONS_NAMES;
 class Todo extends Component {
   render() {
     const {
@@ -18,7 +20,7 @@ class Todo extends Component {
     }`;
     return (
       <div className="todo">
-        {isDone && <div className="todo__is-done">&#10004;&#65039;</div>}
+        {isDone && <div className="todo__is-done">{DONE_EMOJI}</div>}
         <div className="todo__order-buttons">
           <div
             className="todo__up-button"
@@ -26,7 +28,7 @@ class Todo extends Component {
               dispatch({ type: MOVE_UP, index });
             }}
           >
-            up
+            {up}
           </div>
           <div
             className="todo__down-button"
@@ -34,7 +36,7 @@ class Todo extends Component {
               dispatch({ type: MOVE_DOWN, index });
             }}
           >
-            down
+            {down}
           </div>
         </div>
         <div className="todo__name">{name}</div>
@@ -43,10 +45,10 @@ class Todo extends Component {
           <div
             className={classes}
             onClick={() => {
-              dispatchChecking({ type: CHECK_AS_DONE, index });
+              dispatchChecking({ type: CHECK_AS_DONE, index }, isDone);
             }}
           >
-            done
+            {done}
           </div>
           <div
             className="todo__button-delete"
@@ -54,7 +56,7 @@ class Todo extends Component {
               dispatch({ type: REMOVE, index });
             }}
           >
-            delete
+            {deleteButton}
           </div>
         </div>
       </div>
@@ -62,7 +64,8 @@ class Todo extends Component {
   }
 }
 export default connect(null, (dispatch) => ({
-  dispatchChecking: (action) => {
+  dispatchChecking: (action, isDone) => {
+    if (isDone) return;
     dispatch(checkAsDoneWithTimeout(action));
   },
   dispatch,

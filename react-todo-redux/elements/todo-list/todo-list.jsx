@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getTodosFromLocalStorage } from '../../actions/actions';
+import { getTodosFromLocalStorage } from '../../store/actions/actions';
 import Todo from '../todo/todo';
 
 class TodoList extends Component {
