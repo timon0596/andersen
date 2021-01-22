@@ -25,7 +25,7 @@
     "processor": "disable/disable",
     "overrides": [
         {
-          "files": ["react-todo-redux/**/*.jsx"],
+          "files": ["*react-todo-redux/**/*.jsx","graphql/**/*.js"],
           "settings": {
             "disable/plugins": ["jsx-a11y"]
           }
