@@ -8,8 +8,11 @@ const {
   GraphQLInt,
   GraphQLSchema,
 } = require('graphql');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 const connection = new Sequelize('graphql', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
@@ -64,13 +67,13 @@ app.use(
   })
 );
 
-async function test() {
-  const films = await movies.findAll();
-  films.forEach((element) => {
-    console.log(element);
-  });
-}
+// async function test() {
+//   const films = await movies.findAll();
+//   films.forEach((element) => {
+//     console.log(element);
+//   });
+// }
 const PORT = 4000;
 app.listen(PORT, () => {
-  test();
+  // test();
 });

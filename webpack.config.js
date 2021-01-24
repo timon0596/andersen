@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './react-todo-redux/index.js'],
+  entry: ['babel-polyfill', './react-todo-redux/index.jsx'],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
