@@ -1,26 +1,22 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, memo, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useQuery, gql } from '@apollo/client';
+import { graphql } from '@apollo/client/react/hoc';
 import { getTodosFromLocalStorage } from '../../store/actions/actions';
 import Todo from '../todo/todo';
 
-const TodoList = (props) => {
+const TodoList = memo((props) => {
   useEffect(() => {
-    // const EXCHANGE_RATES = gql`
-    //   query Query {
-    //     movie(id: 1) {
-    //       name
-    //       year
-    //     }
-    //   }
-    // `;
     // const queryResult = useQuery(EXCHANGE_RATES);
-    // console.log(queryResult);
     const { getTodos } = props;
     getTodos();
   }, []);
 
-  const { todos } = props;
+  const {
+    todos,
+    data: { movie },
+  } = props;
+  console.log(movie);
 
   return (
     <div className="todo-list">
@@ -35,8 +31,8 @@ const TodoList = (props) => {
       ))}
     </div>
   );
-};
-export default connect(
+});
+const myMomponent = connect(
   (state) => ({ todos: state.todos }),
   (dispatch) => ({
     getTodos: () => {
@@ -44,3 +40,13 @@ export default connect(
     },
   })
 )(TodoList);
+const EXCHANGE_RATES = gql`
+  {
+    movie(id: 1) {
+      name
+      year
+    }
+  }
+`;
+
+export default graphql(EXCHANGE_RATES)(myMomponent);

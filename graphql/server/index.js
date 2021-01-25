@@ -16,6 +16,7 @@ app.use(cors());
 const connection = new Sequelize('graphql', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
+  port: 3300,
 });
 const movies = connection.define(
   'films',
@@ -67,13 +68,13 @@ app.use(
   })
 );
 
-// async function test() {
-//   const films = await movies.findAll();
-//   films.forEach((element) => {
-//     console.log(element);
-//   });
-// }
+async function test() {
+  const films = await movies.findAll();
+  films.forEach((element) => {
+    console.log(element);
+  });
+}
 const PORT = 4000;
 app.listen(PORT, () => {
-  // test();
+  test();
 });
